@@ -10,5 +10,8 @@ export interface BlogCardProps {
   _id: string;
   title: string;
   content: string;
-}export type child = { children: React.ReactNode; };
+}
 
+export type child = { children: React.ReactNode };
+
+export type TParams = { params: { id: string } };

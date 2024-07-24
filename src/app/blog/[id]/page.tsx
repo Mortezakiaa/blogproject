@@ -1,30 +1,11 @@
 "use client";
 
 import BlogCard from "@/components/BlogCard";
-import { BlogCardProps } from "@/Types/Types";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import useDetailsBlog from "@/hooks/useDetailsBlog";
+import { TParams } from "@/Types/Types";
 
-export default function page({ params: { id } }: { params: { id: string } }) {
-  const [blogData, sesBlogData] = useState<BlogCardProps>();
-  const getD = async () => {
-    const res = await axios.get(`/api/blog/${id}`);
-    sesBlogData(res.data.data);
-  };
-
-  const EditBlog = () => {};
-
-  const DeleteBlog = async () => {
-    const router = useRouter();
-    const res = await axios.delete(`/api/blog/${id}`);
-    console.log(res.data);
-    router.replace("/");
-  };
-
-  useEffect(() => {
-    getD();
-  }, []);
+export default function page({ params: { id } }: TParams) {
+  const { DeleteBlog, EditBlog, blogData } = useDetailsBlog(id);
 
   return (
     <>
@@ -37,7 +18,7 @@ export default function page({ params: { id } }: { params: { id: string } }) {
           />
           <div className="flex gap-2 items-center mt-2">
             <button
-              onClick={() => {}}
+              onClick={EditBlog}
               type="button"
               className="border border-blue-500 text-blue-500 font-bold px-3 py-1 rounded"
             >
