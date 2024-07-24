@@ -7,7 +7,8 @@ export interface InputProps {
   value: string;
 }
 export interface BlogCardProps {
-  id: string | number;
+  _id: string;
   title: string;
   content: string;
-}
+}export type child = { children: React.ReactNode; };
+

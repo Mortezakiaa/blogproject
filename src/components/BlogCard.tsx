@@ -2,10 +2,10 @@
 import { BlogCardProps } from "@/Types/Types";
 import Link from "next/link";
 
-const BlogCard: React.FC<BlogCardProps> = ({ title, content, id }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ title, content, _id }) => {
   return (
     <Link
-      href={`blog/${id}`}
+      href={`blog/${_id}`}
       className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
     >
       <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

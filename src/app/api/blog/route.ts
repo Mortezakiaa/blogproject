@@ -6,14 +6,14 @@ export async function POST(req: NextRequest) {
   try {
     await ConnectToDb();
     const { title, content } = await req.json();
-    await blog.create({
+    const blogs = await blog.create({
       title,
       content,
     });
     return NextResponse.json({ data: "Profile Created !!!" }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { data: "Somethings Went Wront!" },
+      { data: "Somethings Went Wrong!" },
       { status: 500 }
     );
   }
@@ -26,7 +26,7 @@ export async function GET() {
     return NextResponse.json({ data: blogs }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { data: "Somethings Went Wront!" },
+      { data: "Somethings Went Wrong!" },
       { status: 500 }
     );
   }

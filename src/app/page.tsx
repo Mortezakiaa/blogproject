@@ -1,5 +1,9 @@
+import BlogLists from "@/components/BlogLists";
 
-export default function Home() {
-  return <>
-  </>;
+export default function page() {
+  return (
+    <>
+      <BlogLists />
+    </>
+  );
 }
