@@ -14,6 +14,12 @@ export interface BlogCardProps {
   content: string;
 }
 
+type BlogMainProps = Omit<BlogCardProps, "_id">;
+export interface BlogDetailsCardProps extends BlogMainProps {
+  EditBlog: () => void;
+  DeleteBlog: () => void;
+}
+
 export type child = { children: React.ReactNode };
 
 export type TParams = { params: { id: string } };

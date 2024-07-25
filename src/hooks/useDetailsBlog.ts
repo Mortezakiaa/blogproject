@@ -11,8 +11,10 @@ export default function useDetailsBlog(id: string) {
   const getBlogDetail = async () => {
     const res = await axios.get(`/api/blog/${id}`);
     const data = await res.data.data;
-    if (!data.success) return toast.error(data.data);
-    setBlogData(res.data.data);
+    if (res.data.success) {
+      return setBlogData(res.data.data);
+    }
+    return toast.error(data.data);
   };
 
   const EditBlog = () => {

@@ -1,8 +1,10 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function useAddEditBlog(id?: string) {
+  const router = useRouter();
   const [blogData, setBlogData] = useState({ title: "", content: "" });
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -24,15 +26,18 @@ export default function useAddEditBlog(id?: string) {
   const editBlog = async () => {
     const res = await axios.patch(`/api/blog/${id}`, blogData);
     const data = await res.data.data;
-    if (data.success) return toast.success(res.data.data);
-    return toast.error(data.data);
+    if (res.data.success) {
+      toast.success(res.data.data);
+      return router.replace("/");
+    }
+    return toast.error(data);
   };
 
   const getBlog = async () => {
     setLoading(true);
     const res = await axios.get(`/api/blog/${id}`);
     const data = await res.data.data;
-    if (data.success) {
+    if (res.data.success) {
       setLoading(false);
       setBlogData({
         title: data.title,
