@@ -1,7 +1,10 @@
-"use client";
-
+import AddEditBlogs from "@/components/AddEditBlogs";
 import { TParams } from "@/Types/Types";
 
 export default function page({ params: { id } }: TParams) {
-  return <div></div>;
+  return (
+    <>
+      <AddEditBlogs id={id} />
+    </>
+  );
 }

@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     );
   } catch (error) {
     return NextResponse.json(
-      { data: "Somethings Went Wrong!" },
+      { data: "Somethings Went Wrong!", success: false },
       { status: 500 }
     );
   }
@@ -26,10 +26,10 @@ export async function GET() {
   try {
     await ConnectToDb();
     const blogs = await blog.find();
-    return NextResponse.json({ data: blogs }, { status: 200 });
+    return NextResponse.json({ data: blogs, success: true }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { data: "Somethings Went Wrong!" },
+      { data: "Somethings Went Wrong!", success: false },
       { status: 500 }
     );
   }

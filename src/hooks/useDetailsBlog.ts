@@ -2,14 +2,17 @@ import { BlogCardProps } from "@/Types/Types";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function useDetailsBlog(id: string) {
   const router = useRouter();
-  const [blogData, sesBlogData] = useState<BlogCardProps>();
+  const [blogData, setBlogData] = useState<BlogCardProps>();
 
   const getBlogDetail = async () => {
     const res = await axios.get(`/api/blog/${id}`);
-    sesBlogData(res.data.data);
+    const data = await res.data.data;
+    if (!data.success) return toast.error(data.data);
+    setBlogData(res.data.data);
   };
 
   const EditBlog = () => {
@@ -18,7 +21,6 @@ export default function useDetailsBlog(id: string) {
 
   const DeleteBlog = async () => {
     const res = await axios.delete(`/api/blog/${id}`);
-    console.log(res.data);
     router.replace("/");
   };
 
