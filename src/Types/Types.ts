@@ -5,6 +5,8 @@ export interface InputProps {
   onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   title: string;
   value: string;
+  type: "text" | "number";
+  name: string;
 }
 export interface BlogCardProps {
   _id: string;

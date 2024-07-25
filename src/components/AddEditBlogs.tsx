@@ -1,13 +1,29 @@
 "use client";
+import useAddEditBlog from "@/hooks/useAddEditBlog";
 import Input from "./Input";
 
 export default function AddEditBlogs() {
+  const { addNewBlog, blogData, changeHandler } = useAddEditBlog();
+
   return (
     <div>
-      <Input onchange={() => {}} title="title" value="" />
-      <Input onchange={() => {}} title="content" value="" />
+      <Input
+        name="title"
+        type="text"
+        onchange={changeHandler}
+        title="title"
+        value={blogData.title}
+      />
+      <Input
+        name="content"
+        type="text"
+        onchange={changeHandler}
+        title="content"
+        value={blogData.content}
+      />
       <div className="flex gap-2 items-center mt-2">
         <button
+          onClick={addNewBlog}
           type="button"
           className="border border-blue-500 text-blue-500 font-bold px-3 py-1 rounded"
         >

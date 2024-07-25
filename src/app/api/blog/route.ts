@@ -10,7 +10,10 @@ export async function POST(req: NextRequest) {
       title,
       content,
     });
-    return NextResponse.json({ data: "Profile Created !!!" }, { status: 201 });
+    return NextResponse.json(
+      { data: "Profile Created !!!", success: true },
+      { status: 201 }
+    );
   } catch (error) {
     return NextResponse.json(
       { data: "Somethings Went Wrong!" },
