@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function useGetAllBlogs() {
   const [blogs, setBlogs] = useState<any>();
@@ -14,11 +15,18 @@ export default function useGetAllBlogs() {
     } else {
       setLoading(false);
       setBlogs([]);
+      toast.error(res.data.data);
     }
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     getAllBlogs();
+
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   return { blogs, loading };

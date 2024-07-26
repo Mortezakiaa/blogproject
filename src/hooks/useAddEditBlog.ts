@@ -13,7 +13,7 @@ export default function useAddEditBlog(id?: string) {
     setBlogData({ ...blogData, [ev.name]: ev.value });
   };
 
-  const addNewBlog = async () => {
+  const addNewBlog = async () => {  
     if (!blogData.title) return toast.error("title cannot be blank!!");
     if (!blogData.content) return toast.error("content cannot be blank");
     const res = await axios.post("/api/blog", blogData);
