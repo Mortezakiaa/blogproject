@@ -23,6 +23,10 @@ describe("", () => {
     const res = await getAllBlogs();
     expect(res).toBe(mockData);
   });
+  test("reject getAllBlogs", async () => {
+    mockedAxios.get.mockRejectedValue(new Error("Network Error"));
+    await expect(getAllBlogs()).rejects.toThrow("Network Error");
+  });
   test("getSingleBlog", async () => {
     const res = await getSingleBlog("123");
     expect(res).toBe(mockData);
